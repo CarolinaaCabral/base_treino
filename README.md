@@ -52,11 +52,9 @@ O usuário poderá reabrir uma tarefa que já tenha sido concluída, informando 
 
 A alteração deverá ser persistida no banco de dados e refletida nas consultas e listagens posteriores. Caso a tarefa não seja encontrada, o sistema deverá apresentar uma mensagem informativa ao usuário.
 
-## **2. Funcionalidades e planejamento dos commits**
+## **2. Funcionalidades**
 
 Cada funcionalidade deverá ser desenvolvida individualmente, respeitando a arquitetura em camadas do projeto. O desenvolvimento deverá contemplar as alterações necessárias nas entidades, serviços, repositórios e interfaces, conforme a responsabilidade de cada componente.
-
-Para cada funcionalidade, deverão ser realizados **no mínimo três commits significativos**, registrando etapas distintas do desenvolvimento. Os commits deverão representar alterações reais no código, permitindo acompanhar a evolução da implementação.
 
 ### **Feature 1 — Cadastro de tarefas**
 
