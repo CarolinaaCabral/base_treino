@@ -1,20 +1,8 @@
 # TaskControl — Requisitos funcionais e planejamento de desenvolvimento
 
-## **Equipe**
-- 
-- 
-- 
+## **Domínio**
 
-Domínio: **Controle de Tarefas** 
-
-## **Banco de dados e Testes**
-
-O arquivo de banco de dados deve ser o mesmo de seu primeiro nome sem acentos.
-
-Comando para realizar os testes unitários e de integração.
-
-python -m unittest discover -s tests -v
-
+Escolha uma entidade em substituição a entidade Tarefa. Substitua os atribuitos de acordo.
 
 ## **1. Requisitos funcionais**
 
@@ -160,37 +148,3 @@ O desenvolvimento deverá contemplar:
 4. Apresentação de mensagens de confirmação ou de erro, conforme o resultado da operação.
 
 **Resultado esperado:** o usuário consegue reabrir tarefas anteriormente concluídas, permitindo que voltem a ser acompanhadas como pendentes.
-
-## **3. Regras de utilização do Git e GitHub**
-
-O desenvolvimento do TaskControl deverá utilizar Git para controle de versão e GitHub para hospedagem do repositório remoto. Todas as alterações realizadas durante a implementação deverão ser registradas no histórico do projeto.
-
-As seguintes regras deverão ser respeitadas:
-
-1\. **Branches principais:** o projeto utilizará as branches `main` e `dev`. A primeira representará a versão estável da aplicação, enquanto a segunda será utilizada para integrar e testar as funcionalidades desenvolvidas.
-
-2\. **Branches individuais:** cada funcionalidade deverá ser desenvolvida em uma branch própria, seguindo o padrão de nomenclatura `<identificador>/feat/<nome-da-feature>`, utilizando o identificador do GitHub do aluno.
-
-3\. **Desenvolvimento isolado:** não será permitido desenvolver funcionalidades diretamente nas branches `main` ou `dev`. Toda implementação deverá ocorrer inicialmente em uma branch individual.
-
-4\. **Quantidade de commits:** cada funcionalidade deverá possuir, no mínimo, três commits significativos, registrando etapas distintas da implementação. O histórico deverá permitir identificar a evolução do trabalho realizado.
-
-5\. **Mensagens de commit:** as mensagens deverão ser claras e descrever objetivamente as alterações realizadas. Recomenda-se utilizar prefixos como `feat`, `fix`, `test` e `refactor`, conforme a natureza da alteração.
-
-6\. **Sincronização:** antes de integrar uma funcionalidade, o aluno deverá atualizar sua branch individual com as alterações mais recentes da `dev`, tratando eventuais divergências.
-
-7\. **Envio ao GitHub:** todas as branches individuais deverão ser enviadas ao repositório remoto, mantendo o histórico de commits disponível para consulta e avaliação.
-
-8\. **Integração:** após concluir e testar uma funcionalidade, o aluno deverá realizar seu merge na branch `dev`, garantindo que as alterações sejam incorporadas ao projeto integrado.
-
-9\. **Resolução de conflitos:** quando ocorrerem conflitos durante a sincronização ou integração, o aluno deverá analisar as alterações envolvidas, resolver as divergências e registrar a resolução em um commit.
-
-10\. **Validação da integração:** após cada merge na `dev`, a equipe deverá verificar se a aplicação continua executando corretamente e se as funcionalidades já integradas permanecem operacionais.
-
-11\. **Testes automatizados:** os testes deverão ser executados durante o desenvolvimento e após as integrações. O GitHub Actions deverá ser utilizado para automatizar a execução dos testes nas branches configuradas.
-
-12\. **Atualização da versão estável:** a branch `main` deverá receber as alterações da `dev` somente após a validação da versão integrada, garantindo que a versão disponibilizada esteja funcional.
-
-13\. **Preservação do histórico:** as branches individuais deverão ser mantidas no GitHub como evidências do desenvolvimento realizado por cada aluno.
-
-14\. **Colaboração:** todos os integrantes deverão trabalhar no mesmo repositório remoto, respeitando as responsabilidades individuais e contribuindo para a integração das funcionalidades.

@@ -1,8 +1,16 @@
-from database.install import install_database
-from interface.task_menu import TaskMenu
+from install import install
+from interface.gui import UI
+from service.services import Services
+from repository.dao_entity import DAOEntity
 
 def main():
-    pass
+    install()
+
+    repository = DAOEntity()
+    services = Services(repository)
+    UI(services).show_principal_menu()
+
+
 
 if __name__ == "__main__":
     main()
