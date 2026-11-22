@@ -10,6 +10,7 @@ class UI:
             print("\n=== Catálogo de Discos ===")
             print("1 - Cadastrar disco")
             print("2 - Listar discos")
+            print("3 - Buscar por ID")
             print("0 - Sair")
             
             opcao = input("Escolha uma opção: ").strip()
@@ -22,6 +23,9 @@ class UI:
             
             elif opcao == "2":
                 self.listar_discos()
+                
+            elif opcao == "3":
+                self.buscar_disco_id()
                 
             else:
                 print("Opção inválida.")
@@ -66,4 +70,32 @@ class UI:
             print(f"Ano: {disco.ano}")
             print(f"Descrição: {disco.descricao or 'Sem descrição'}")
             print(f"Situação: {situacao}")
+            
+            
+    def buscar_disco_id(self):
+        try:
+            disco_id = int(input("ID do disco: "))
+        except ValueError:
+            print("Digite um ID inteiro.")
+            return
+            
+        try:
+            disco = self.services.get(disco_id)
+        except OverflowError:
+            print("O ID informado é grande demais.")
+            return
+        
+        if disco is None:
+            print("Disco não encontrado")
+            
+        situacao = "Ouvido" if disco.ouvido else "Não ouvido"
+        
+        print(f"\nID: {disco.id}")
+        print(f"Título: {disco.titulo}")
+        print(f"Artista: {disco.artista}")
+        print(f"Ano: {disco.ano}")
+        print(f"Descrição: {disco.descricao or 'Sem descrição'}")
+        print(f"Situação: {situacao}")
+        
+                           
             

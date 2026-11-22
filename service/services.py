@@ -29,8 +29,8 @@ class Services:
     def list(self):
         return self.repository.find_all()
 
-    def get(self, task_id):
-        pass
+    def get(self, disco_id: int) -> Entity | None:
+        return self.repository.find_by_id(disco_id)
 
     def update(self, task_id, title, description):
         pass

@@ -49,9 +49,33 @@ class DAOEntity:
         finally:
             connection.close()
             
-    def find_by_id(self, task_id):
-        # Consultar pelo ID
-        pass
+    def find_by_id(self, disco_id):
+        connection = get_connection()
+        
+        try:
+            cursor = connection.execute(
+                """
+                SELECT id, titulo, artista, ano, descricao, ouvido
+                FROM discos
+                WHERE id = ?
+                """,
+                (disco_id,),
+                )
+            linha = cursor.fetchone()
+            
+            if linha is None:
+                return None
+            
+            return Entity(
+                disco_id=linha["id"],
+                titulo=linha["titulo"],
+                artista=linha["artista"],
+                ano=linha["ano"],
+                descricao_disco=linha["descricao"],
+                ouvido=bool(linha["ouvido"]),
+                )
+        finally:
+            connection.close()
 
     def update(self, task):
         # Atualizar
