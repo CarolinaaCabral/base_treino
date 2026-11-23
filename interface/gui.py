@@ -11,6 +11,7 @@ class UI:
             print("1 - Cadastrar disco")
             print("2 - Listar discos")
             print("3 - Buscar por ID")
+            print("4 - Editar disco")
             print("0 - Sair")
             
             opcao = input("Escolha uma opção: ").strip()
@@ -26,6 +27,9 @@ class UI:
                 
             elif opcao == "3":
                 self.buscar_disco_id()
+                
+            elif opcao == "4":
+                self.editar_disco()
                 
             else:
                 print("Opção inválida.")
@@ -97,5 +101,41 @@ class UI:
         print(f"Descrição: {disco.descricao or 'Sem descrição'}")
         print(f"Situação: {situacao}")
         
-                           
+    def editar_disco(self):
+        try:
+            disco_id = int(input("ID do disco que deseja editar: "))
+        except ValueError:
+            print("Digite um ID inteiro.")
+            return
+
+        titulo = input("Novo título: ")
+        artista = input("Novo artista: ")
+
+        try:
+            ano = int(input("Novo ano de lançamento: "))
+        except ValueError:
+            print("O ano deve ser um número inteiro.")
+            return
+
+        descricao = input("Nova descrição (opcional): ")
+
+        try:
+            atualizado = self.services.update(
+                disco_id=disco_id,
+                titulo=titulo,
+                artista=artista,
+                ano=ano,
+                descricao=descricao,
+            )
+        except ValueError as erro:
+            print(erro)
+            return
+        except OverflowError:
+            print("O ID ou o ano informado está fora do intervalo aceito.")
+            return
+
+        if atualizado:
+            print("Disco atualizado com sucesso!")
+        else:
+            print("Disco não encontrado.")
             

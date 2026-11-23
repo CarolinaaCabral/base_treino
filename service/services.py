@@ -7,16 +7,7 @@ class Services:
         self.repository = repository
 
     def create(self, titulo: str, artista: str, ano: int, descricao: str = "") -> int:
-        titulo = titulo.strip()
-        
-        if not titulo:
-            raise ValueError("O título do disco é obrigatório.")
-        
-        if not artista:
-            raise ValueError("O artista do disco é obrigatório.")
-        
-        if type(ano) is not int:
-            raise ValueError("O ano do disco deve ser um número inteiro.")
+        titulo, artista = self._validar_dados_disco(titulo, artista, ano)
         
         disco = Entity(
             titulo=titulo,
@@ -32,8 +23,41 @@ class Services:
     def get(self, disco_id: int) -> Entity | None:
         return self.repository.find_by_id(disco_id)
 
-    def update(self, task_id, title, description):
-        pass
+    def update(
+        self,
+        disco_id: int,
+        titulo: str,
+        artista: str,
+        ano: int,
+        descricao: str = "",
+        ) -> bool:
+        titulo, artista = self._validar_dados_disco(titulo, artista, ano)
+        
+        disco = Entity(
+            disco_id=disco_id,
+            titulo=titulo,
+            artista=artista,
+            ano=ano,
+            descricao_disco=descricao,
+            )
+        return self.repository.update(disco)
+    
+    def _validar_dados_disco(
+        self, titulo: str, artista: str, ano: int
+        ) -> tuple[str, str]:
+        titulo = titulo.strip()
+        artista = artista.strip()
+        
+        if not titulo:
+            raise ValueError("O título do disco é obrigatório.")
+        
+        if not artista:
+            raise ValueError("O artista do disco é obrigatório.")
+        
+        if type(ano) is not int:
+            raise ValueError("O ano dever ser um número inteiro.")
+        return titulo, artista
+    
 
     def delete(self, task_id):
         pass

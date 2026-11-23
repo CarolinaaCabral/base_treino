@@ -77,9 +77,29 @@ class DAOEntity:
         finally:
             connection.close()
 
-    def update(self, task):
-        # Atualizar
-        pass
+    def update(self, disco: Entity) -> bool:
+        connection = get_connection()
+        
+        try:
+            cursor = connection.execute(
+                """
+                UPDATE discos
+                SET titulo = ?, artista = ?, ano = ?, descricao = ?
+                WHERE id = ?
+                """,
+                (
+                    disco.titulo,
+                    disco.artista,
+                    disco.ano,
+                    disco.descricao,
+                    disco.id,
+                    ),
+                )
+            connection.commit()
+            return cursor.rowcount>0
+        finally:
+            connection.close()
+        
 
     def delete(self, task_id):
         # Excluir
