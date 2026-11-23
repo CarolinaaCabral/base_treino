@@ -65,3 +65,5 @@ class Services:
     def marcar_como_ouvido(self, disco_id: int) -> bool:
         return self.repository.set_ouvido(disco_id, True)
         
+    def marcar_como_nao_ouvido(self, disco_id: int) -> bool:
+        return self.repository.set_ouvido(disco_id, False)

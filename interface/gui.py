@@ -13,17 +13,15 @@ class UI:
             print("3 - Buscar por ID")
             print("4 - Editar disco")
             print("5 - Deletar disco")
-            print("6 - Marcar discoo como ouvido")
-            print("0 - Sair")
+            print("6 - Marcar disco como ouvido")
+            print("7 - Marcar disco como não ouvido")
+            print("8 - Sair")
             
             opcao = input("Escolha uma opção: ").strip()
             
             if opcao == "1":
                 self.cadastrar_disco()
                 
-            elif opcao == "0":
-                break
-            
             elif opcao == "2":
                 self.listar_discos()
                 
@@ -38,6 +36,12 @@ class UI:
                 
             elif opcao == "6":
                 self.disco_ouvido()
+                
+            elif opcao == "7":
+                self.disco_nao_ouvido()
+                
+            elif opcao == "8":
+                break
                 
             else:
                 print("Opção inválida.")
@@ -191,4 +195,21 @@ class UI:
             print("Disco marcado como ouvido!")
         else:
             print("Disco não encontrado.")
-            
+
+    def disco_nao_ouvido(self):
+        try:
+            disco_id = int(input("ID do disco que deseja marcar como não ouvido: "))
+        except ValueError:
+            print("Digite um ID inteiro.")
+            return
+
+        try:
+            atualizado = self.services.marcar_como_nao_ouvido(disco_id)
+        except OverflowError:
+            print("O ID informado está fora do intervalo aceito.")
+            return
+
+        if atualizado:
+            print("Disco marcado como não ouvido!")
+        else:
+            print("Disco não encontrado.")
