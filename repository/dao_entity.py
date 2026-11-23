@@ -101,6 +101,19 @@ class DAOEntity:
             connection.close()
         
 
-    def delete(self, task_id):
-        # Excluir
-        pass
+    def delete(self, disco_id):
+        connection = get_connection()
+      
+        try:
+          cursor = connection.execute( 
+              """
+              DELETE FROM discos
+              WHERE id = ?
+              """,
+              (disco_id,),
+              )
+          connection.commit()
+          return cursor.rowcount > 0
+        finally:
+            connection.close()
+        

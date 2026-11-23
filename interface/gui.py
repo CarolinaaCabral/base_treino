@@ -12,6 +12,7 @@ class UI:
             print("2 - Listar discos")
             print("3 - Buscar por ID")
             print("4 - Editar disco")
+            print("5 - Deletar disco")
             print("0 - Sair")
             
             opcao = input("Escolha uma opção: ").strip()
@@ -30,6 +31,9 @@ class UI:
                 
             elif opcao == "4":
                 self.editar_disco()
+                
+            elif opcao == "5":
+                self.deletar_disco()
                 
             else:
                 print("Opção inválida.")
@@ -136,6 +140,33 @@ class UI:
 
         if atualizado:
             print("Disco atualizado com sucesso!")
+        else:
+            print("Disco não encontrado.")
+            
+    def deletar_disco(self):
+        try:
+            disco_id = int(input("Digite o Id a ser deletado: "))
+        except ValueError:
+            ("Digite um ID inteiro.")
+            return
+        try:
+            disco_deletar = self.services.get(disco_id)
+        except OverflowError:
+            print("O ID informado está fora do intervalo aceito.")
+            return
+        
+        if disco_deletar is None:
+            print("Disco não encontrado.")
+            return
+        
+        print(f"Disco selecionado: {disco_deletar.titulo} — {disco_deletar.artista} (ID {disco_deletar.id})")
+        resposta = input("Confirma a exclusão? [s/n]: ").strip().lower()
+        
+        if resposta != "s":
+            print("Exclusão cancelada.")
+            return
+        if self.services.delete(disco_id):
+            print("Disco excluído com sucesso!")
         else:
             print("Disco não encontrado.")
             

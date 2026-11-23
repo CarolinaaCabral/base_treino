@@ -59,5 +59,6 @@ class Services:
         return titulo, artista
     
 
-    def delete(self, task_id):
-        pass
+    def delete(self, disco_id):
+        return self.repository.delete(disco_id)
+        
