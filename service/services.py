@@ -61,4 +61,7 @@ class Services:
 
     def delete(self, disco_id):
         return self.repository.delete(disco_id)
+    
+    def marcar_como_ouvido(self, disco_id: int) -> bool:
+        return self.repository.set_ouvido(disco_id, True)
         

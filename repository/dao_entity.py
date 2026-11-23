@@ -116,4 +116,18 @@ class DAOEntity:
           return cursor.rowcount > 0
         finally:
             connection.close()
+            
+    def set_ouvido(self, disco_id: int, ouvido: bool) -> bool:
+        connection = get_connection()
+        
+        try:
+            cursor = connection.execute(
+                "UPDATE discos SET ouvido = ? WHERE id = ?",
+                (ouvido, disco_id),
+            )
+            connection.commit()
+            return cursor.rowcount > 0
+        finally:
+            connection.close()
+        
         
